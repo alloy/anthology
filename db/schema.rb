@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726133438) do
+ActiveRecord::Schema.define(version: 20150726140603) do
 
   create_table "cadres", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20150726133438) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "writer_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["story_id"], name: "index_comments_on_story_id"
+  add_index "comments", ["writer_id"], name: "index_comments_on_writer_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

@@ -32,8 +32,10 @@ class StoryValidationsTest < ActiveSupport::TestCase
     assert_valid_key @story, :objective, 'I can keep track of what art I own'
   end
 
-  test 'a story is valid without any attributes set if it is a fork of another story' do
+  test 'a child story is valid without any attributes set other than the writer' do
     @story.parent = stories(:collector_collection)
+    assert_invalid_key @story, :writer_id, nil
+    @story.writer = writers(:eloy)
     assert @story.valid?
   end
 end
@@ -42,11 +44,15 @@ class StoryTest < ActiveSupport::TestCase
   test 'a story creates a formatted sentence' do
     assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).to_sentence
   end
+
+  test 'a story returns a list of comments' do
+    assert_equal [comments(:collector_collection)], stories(:collector_collection).comments
+  end
 end
 
 class ChildStoryTest < ActiveSupport::TestCase
   def setup
-    @story = stories(:collector_collection).children.create
+    @story = stories(:collector_collection).children.create!(writer: writers(:eloy))
   end
 
   test 'a child story has a parent story' do
@@ -57,9 +63,14 @@ class ChildStoryTest < ActiveSupport::TestCase
     assert_equal @story.parent.role, @story.role
     assert_equal @story.parent.feature, @story.feature
     assert_equal @story.parent.objective, @story.objective
+    assert_equal @story.parent.cadre, @story.cadre
   end
 
   test 'a child story without any attributes set returns the same formatted sentence' do
     assert_equal @story.parent.to_sentence, @story.to_sentence
+  end
+
+  test 'a child story does not return the parent’s comments' do
+    assert_equal [], @story.comments
   end
 end
