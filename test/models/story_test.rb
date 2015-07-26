@@ -31,10 +31,31 @@ class StoryValidationsTest < ActiveSupport::TestCase
     assert_invalid_key @story, :objective, ' '
     assert_valid_key @story, :objective, 'I can keep track of what art I own'
   end
+
+  test 'a story is valid without any attributes set if it is a fork of another story' do
+    @story.parent = stories(:collector_collection)
+    assert @story.valid?
+  end
 end
 
 class StoryTest < ActiveSupport::TestCase
   test 'a story creates a formatted sentence' do
     assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).to_sentence
+  end
+end
+
+class ChildStoryTest < ActiveSupport::TestCase
+  def setup
+    @story = stories(:collector_collection).children.create
+  end
+
+  test 'a child story returns the original attributes' do
+    assert_equal stories(:collector_collection).role, @story.role
+    assert_equal stories(:collector_collection).feature, @story.feature
+    assert_equal stories(:collector_collection).objective, @story.objective
+  end
+
+  test 'a child story without any attributes set returns the same formatted sentence' do
+    assert_equal stories(:collector_collection).to_sentence, @story.to_sentence
   end
 end
