@@ -32,3 +32,9 @@ class StoryValidationsTest < ActiveSupport::TestCase
     assert_valid_key @story, :objective, 'I can keep track of what art I own'
   end
 end
+
+class StoryTest < ActiveSupport::TestCase
+  test 'a formatted story string' do
+    assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).as_sentence
+  end
+end
