@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+collector:
+  name: Collector
+  definition: A person that collects art.
 
-one:
-  name: MyString
-  definition: MyString
-
-two:
-  name: MyString
-  definition: MyString
+gallery:
+  name: Gallery
+  definition: A place showcasing and selling art.

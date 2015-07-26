@@ -1,11 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  role: MyString
-  feature: MyString
-  objective: MyString
-
-two:
-  role: MyString
-  feature: MyString
-  objective: MyString
+collector_collection:
+  role: collector
+  feature: access to my collection
+  objective: I can keep track of what art I own
+  writer: rebecca
+  cadre: collector_relations
