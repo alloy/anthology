@@ -4,6 +4,10 @@
       <%= f.label :writer, class: 'columns-4' %>
       <%= f.select :writer, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
     </span>
+    <span class="columns-6">
+      <%= f.label :cadre, class: 'columns-4' %>
+      <%= f.select :cadre, Cadre.all.sort_by(&:name).map { |cadre| [cadre.name, cadre.id] }, {}, { class: 'columns-16' } %>
+    </span>
     <br/>
     <div class="clear">&nbsp;</div>
     <span class="columns-3">
