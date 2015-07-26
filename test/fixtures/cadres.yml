@@ -2,6 +2,10 @@ collector_relations:
   name: Collector Relations
   definition: Manages inquiries and corresponds with users to ensure a quality discovery and art collecting experience.
 
+design:
+  name: Design
+  definition: Develops our digital products and builds communication materials to build our brand.
+
 mobile_engineering:
   name: Mobile Engineering
   definition: Creates the iPhone/iPad applications for Artsy.
