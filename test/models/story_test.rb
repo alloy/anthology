@@ -49,13 +49,17 @@ class ChildStoryTest < ActiveSupport::TestCase
     @story = stories(:collector_collection).children.create
   end
 
+  test 'a child story has a parent story' do
+    assert_equal stories(:collector_collection), @story.parent
+  end
+
   test 'a child story returns the original attributes' do
-    assert_equal stories(:collector_collection).role, @story.role
-    assert_equal stories(:collector_collection).feature, @story.feature
-    assert_equal stories(:collector_collection).objective, @story.objective
+    assert_equal @story.parent.role, @story.role
+    assert_equal @story.parent.feature, @story.feature
+    assert_equal @story.parent.objective, @story.objective
   end
 
   test 'a child story without any attributes set returns the same formatted sentence' do
-    assert_equal stories(:collector_collection).to_sentence, @story.to_sentence
+    assert_equal @story.parent.to_sentence, @story.to_sentence
   end
 end
