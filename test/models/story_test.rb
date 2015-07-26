@@ -35,6 +35,6 @@ end
 
 class StoryTest < ActiveSupport::TestCase
   test 'a story creates a formatted sentence' do
-    assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).as_sentence
+    assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).to_sentence
   end
 end

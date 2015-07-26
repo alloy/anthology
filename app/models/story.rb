@@ -5,7 +5,7 @@ class Story < ActiveRecord::Base
   belongs_to :writer
   belongs_to :cadre
 
-  def as_sentence
+  def to_sentence
     SENTENCE_FORMAT % [role.name.downcase, feature, objective]
   end
 
