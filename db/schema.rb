@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726140603) do
+ActiveRecord::Schema.define(version: 20150726142554) do
 
   create_table "cadres", force: :cascade do |t|
     t.string   "name"
@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(version: 20150726140603) do
     t.integer  "role_id"
     t.integer  "writer_id"
     t.integer  "cadre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "parent_id"
+    t.boolean  "implemented"
   end
 
   add_index "stories", ["cadre_id"], name: "index_stories_on_cadre_id"

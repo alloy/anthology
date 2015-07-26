@@ -14,6 +14,18 @@ class Story < ActiveRecord::Base
     define_method(attribute) { super() || parent.try(attribute) }
   end
 
+  def implemented=(implemented)
+    if children.count > 0
+      raise "Forbidden to manually mark as implemented when a story has child stories."
+    end
+    super
+  end
+
+  def implemented
+    children.empty? ? super : children.all?(&:implemented)
+  end
+  alias_method :implemented?, :implemented
+
   def to_sentence
     SENTENCE_FORMAT % [role.name.downcase, feature, objective]
   end

@@ -41,18 +41,35 @@ class StoryValidationsTest < ActiveSupport::TestCase
 end
 
 class StoryTest < ActiveSupport::TestCase
+  def setup
+    @story = stories(:collector_collection)
+  end
+
   test 'a story creates a formatted sentence' do
-    assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', stories(:collector_collection).to_sentence
+    assert_equal 'As a collector, I want access to my collection, so that I can keep track of what art I own.', @story.to_sentence
   end
 
   test 'a story returns a list of comments' do
-    assert_equal [comments(:collector_collection)], stories(:collector_collection).comments
+    assert_equal [comments(:collector_collection)], @story.comments
+  end
+
+  test 'a story without child stories can be marked as implemented manually' do
+    assert_raises { @story.implemented = true }
+
+    @story.children.delete_all
+    @story.implemented = true
+    assert @story.implemented?
+  end
+
+  test 'a story with child stories is considered implemented once all children are implemented' do
+    stories(:collector_collection_in_mobile).update_attribute(:implemented, true)
+    assert @story.implemented?
   end
 end
 
 class ChildStoryTest < ActiveSupport::TestCase
   def setup
-    @story = stories(:collector_collection).children.create!(writer: writers(:eloy))
+    @story = stories(:collector_collection_in_mobile)
   end
 
   test 'a child story has a parent story' do

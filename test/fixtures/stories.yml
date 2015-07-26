@@ -4,3 +4,7 @@ collector_collection:
   objective: I can keep track of what art I own
   writer: rebecca
   cadre: collector_relations
+
+collector_collection_in_mobile:
+  parent: collector_collection
+  writer: eloy
