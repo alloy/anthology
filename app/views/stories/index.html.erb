@@ -1,0 +1,8 @@
+<div class='container'>
+  <% @stories.each do |story| %>
+    <div class='gray'>
+      <p><%= link_to story.to_sentence, story_path(story) %></p>
+      <p>– <%= story.writer.name %></p>
+    </div>
+  <% end %>
+</div>

@@ -5,6 +5,12 @@ class StoriesControllerTest < ActionController::TestCase
     @story = stories(:collector_collection)
   end
 
+  test 'shows a list of stories' do
+    get 'index'
+    assert_response :ok
+    assert_template 'index'
+  end
+
   test 'shows a new story page' do
     get 'new'
     assert_response :ok
