@@ -3,10 +3,18 @@
 <head>
   <title>Proviso</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag '//fast.fonts.net/cssapi/f7f47a40-b25b-44ee-9f9c-cfdfc8bb2741.css' %>
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<header class="navigation">
+  <%= render(partial: '/shared/albers/svgs/mark')  %>
+  <ul>
+    <li> <%= link_to 'Echo', "/" %></li>
+  </ul>
+</header>
 
 <%= yield %>
 

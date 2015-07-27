@@ -1,6 +1,13 @@
+@import 'albers/base';
+
+section#main {
+  @include outer-container;
+  padding: $spacing-unit;
+}
 body {
   font-family: 'futura-medium';
 }
+
 
 .container {
   width: 960px;
@@ -41,14 +48,6 @@ form span {
 form label,input,option {
   font-family: 'futura-medium';
   font-size: 16px;
-}
-
-div.field_with_errors {
-  display: inline;
-}
-
-div.field_with_errors input, div.field_with_errors select {
-  border-color: red;
 }
 
 div.clear {
