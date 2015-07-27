@@ -1,2 +1,5 @@
 * Rename app to ‘anthology’.
 * Add required associations as DB constraints.
+* Add google authentication
+* Remove ‘writer’ popups
+* Default Cadre in the popup to the signed-in user’s cadre for stories
