@@ -3,3 +3,4 @@
 * Add google authentication
 * Remove ‘writer’ popups
 * Default Cadre in the popup to the signed-in user’s cadre for stories
+* Don't use values for child story when they are the same as the parent’s and thus delegate to the parent.

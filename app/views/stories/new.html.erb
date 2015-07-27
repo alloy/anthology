@@ -1,5 +1,8 @@
 <div class='gray container'>
   <%= form_for @story do |f| %>
+    <% if @story.parent %>
+      <%= f.hidden_field :parent_id, value: @story.parent.id %>
+    <% end %>
     <span class="columns-6">
       <%= f.label :writer_id, class: 'columns-4' %>
       <%= f.select :writer_id, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
