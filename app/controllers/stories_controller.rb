@@ -1,4 +1,8 @@
 class StoriesController < ApplicationController
+  def index
+    @stories = Story.all
+  end
+
   def new
     if params[:story_id]
       parent = Story.find(params[:story_id])
