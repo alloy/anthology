@@ -1,12 +1,15 @@
 <div class='container'>
-  <div>
-    <%= link_to 'New Story', new_story_path %>
-  </div>
+  <p><%= link_to 'New Story', new_story_path, class: "btn btn-primary btn-small" %></p>
 
-  <% @stories.each do |story| %>
-    <div class='gray'>
-      <p><%= link_to story.to_sentence, story_path(story) %></p>
-      <p>– <%= story.writer.name %></p>
-    </div>
+  <% @stories.each do |cadre, stories| %>
+  <h2><%= cadre.name %></h2>
+  <ul>
+    <% stories.each do |story| %>
+      <li>
+        <p><%= check_box_tag 'completed', :implemented, story.implemented, disabled: true %><%= link_to to_html_sentence(story), story_path(story) %></p
+      </li>
+    <% end %>
+  </ul>
   <% end %>
+
 </div>
