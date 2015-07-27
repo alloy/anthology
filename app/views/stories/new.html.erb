@@ -1,18 +1,18 @@
 <div class='gray container'>
   <%= form_for @story do |f| %>
     <span class="columns-6">
-      <%= f.label :writer, class: 'columns-4' %>
-      <%= f.select :writer, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
+      <%= f.label :writer_id, class: 'columns-4' %>
+      <%= f.select :writer_id, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
     </span>
     <span class="columns-6">
-      <%= f.label :cadre, class: 'columns-4' %>
-      <%= f.select :cadre, Cadre.all.sort_by(&:name).map { |cadre| [cadre.name, cadre.id] }, {}, { class: 'columns-16' } %>
+      <%= f.label :cadre_id, class: 'columns-4' %>
+      <%= f.select :cadre_id, Cadre.all.sort_by(&:name).map { |cadre| [cadre.name, cadre.id] }, {}, { class: 'columns-16' } %>
     </span>
     <br/>
     <div class="clear">&nbsp;</div>
     <span class="columns-3">
-      <%= f.label :role, 'As a', class: 'columns-6' %>
-      <%= f.select :role, Role.all.map { |role| [role.name.downcase, role.id] }, {}, { class: 'columns-14' } %>
+      <%= f.label :role_id, 'As a', class: 'columns-6' %>
+      <%= f.select :role_id, Role.all.map { |role| [role.name.downcase, role.id] }, {}, { class: 'columns-14' } %>
     </span>
     <span class="columns-8">
       <%= f.label :feature, 'I want', class: 'columns-4' %>
