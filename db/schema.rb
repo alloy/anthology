@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150726142554) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cadres", force: :cascade do |t|
     t.string   "name"
     t.string   "definition"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150726142554) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["story_id"], name: "index_comments_on_story_id"
-  add_index "comments", ["writer_id"], name: "index_comments_on_writer_id"
+  add_index "comments", ["story_id"], name: "index_comments_on_story_id", using: :btree
+  add_index "comments", ["writer_id"], name: "index_comments_on_writer_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -50,9 +53,9 @@ ActiveRecord::Schema.define(version: 20150726142554) do
     t.boolean  "implemented"
   end
 
-  add_index "stories", ["cadre_id"], name: "index_stories_on_cadre_id"
-  add_index "stories", ["role_id"], name: "index_stories_on_role_id"
-  add_index "stories", ["writer_id"], name: "index_stories_on_writer_id"
+  add_index "stories", ["cadre_id"], name: "index_stories_on_cadre_id", using: :btree
+  add_index "stories", ["role_id"], name: "index_stories_on_role_id", using: :btree
+  add_index "stories", ["writer_id"], name: "index_stories_on_writer_id", using: :btree
 
   create_table "writers", force: :cascade do |t|
     t.string   "name"
@@ -61,6 +64,8 @@ ActiveRecord::Schema.define(version: 20150726142554) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "writers", ["cadre_id"], name: "index_writers_on_cadre_id"
+  add_index "writers", ["cadre_id"], name: "index_writers_on_cadre_id", using: :btree
 
+  add_foreign_key "comments", "stories"
+  add_foreign_key "comments", "writers"
 end
