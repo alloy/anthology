@@ -31,6 +31,13 @@ class StoriesControllerTest < ActionController::TestCase
     assert_template 'show'
   end
 
+  test 'updates the status of a story' do
+    @story.children.delete_all
+    put :update, id: @story.to_param, story: { implemented: true }
+    assert @story.reload.implemented?
+    assert_redirected_to story_url(@story)
+  end
+
   # children
 
   test 'shows a new child story page' do

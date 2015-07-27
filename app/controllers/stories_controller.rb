@@ -27,6 +27,12 @@ class StoriesController < ApplicationController
     @related_stories = @story.children.group_by(&:cadre)
   end
 
+  def update
+    @story = Story.find(params[:id])
+    @story.update_attribute(:implemented, params[:story][:implemented])
+    redirect_to story_url(@story)
+  end
+
   private
 
   def story_params
