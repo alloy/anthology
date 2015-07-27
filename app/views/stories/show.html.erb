@@ -1,4 +1,8 @@
 <div class='container'>
+  <% if @story.parent %>
+    <%= link_to "↑ Forked from: #{@story.parent.to_sentence}", story_path(@story.parent) %>
+  <% end %>
+
   <div class='gray'>
     <%= form_for @story do |f| %>
       <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented? %>
@@ -7,11 +11,16 @@
     <p>– <%= @story.writer.name %></p>
   </div>
 
-  <% @story.comments.each do |comment| %>
-    <div class='lightgray'>
-      <p><%= comment.body %></p>
-      <p>– <%= comment.writer.name %></p>
-    </div>
+  <% @list_items.each do |list_item| %>
+    <% case list_item %>
+    <% when Comment %>
+      <div class='lightgray'>
+        <p><%= list_item.body %></p>
+        <p>– <%= list_item.writer.name %></p>
+      </div>
+    <% when Story %>
+      <%= link_to "↳ Forked to #{list_item.cadre.name}", story_path(list_item) %>
+    <% end %>
   <% end %>
 
   <div class='lightgray'>
@@ -23,5 +32,9 @@
       <%= f.text_area :body, class: 'columns-20' %>
       <%= f.submit 'Comment' %>
     <% end %>
+  </div>
+
+  <div>
+    <%= link_to 'Fork Story', new_story_child_path(@story) %>
   </div>
 </div>
