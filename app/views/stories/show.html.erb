@@ -5,11 +5,11 @@
 
 
   <div class='story_headline'>
-    <%= form_for @story do |f| %>
-      <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented? %>
+    <%= form_for @story, html: { name: "update_implmented"}  do |f| %>
+      <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented?, :onclick => "javascript: document.update_implmented.submit();" %>
       <%= f.label :implemented, to_html_sentence(@story) %>
     <% end %>
-    <p>Opened by <%= @story.writer.name %></p>
+    <p>Opened by <%= @story.writer.name %>. <%= link_to 'Fork this Story', new_story_child_path(@story) %></p>
   </div>
   
   <% if @related_stories.length %>
@@ -18,7 +18,7 @@
     <h3><%= cadre.name %></h3>
     <ul>
       <% stories.each do |story| %>
-      <li><%= link_to to_html_sentence(story), story_path(story) %></li>
+    <li><%= check_box_tag 'completed', :implemented, story.implemented, disabled: true %><%= link_to to_html_sentence(story), story_path(story) %></li>
       <% end %>
     </ul>
     <% end %>
@@ -50,9 +50,5 @@
       <%= f.text_area :body, class: 'columns-20' %>
       <%= f.submit 'Comment' %>
     <% end %>
-  </div>
-
-  <div>
-    <%= link_to 'Fork Story', new_story_child_path(@story) %>
   </div>
 </div>
