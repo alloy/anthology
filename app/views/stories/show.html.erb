@@ -1,16 +1,15 @@
 <div class='container'>
   <% if @story.parent %>
-    <%= link_to "↑ Forked from: #{@story.parent.to_sentence}", story_path(@story.parent) %>
+    <%= link_to "↑ Forked from: #{@story.parent.to_sentence}", story_path(@story.parent), :class => "forked_from" %>
   <% end %>
 
 
-
-  <div class='gray'>
+  <div class='story_headline'>
     <%= form_for @story do |f| %>
       <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented? %>
       <%= f.label :implemented, to_html_sentence(@story) %>
     <% end %>
-    <p>– <%= @story.writer.name %></p>
+    <p>Opened by <%= @story.writer.name %></p>
   </div>
 
 

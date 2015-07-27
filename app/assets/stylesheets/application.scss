@@ -49,11 +49,6 @@ form span {
   float: left;
 }
 
-form label,input,option {
-  font-family: 'futura-medium';
-  font-size: 16px;
-}
-
 form textarea {
   height: 100px;
 }
@@ -68,4 +63,32 @@ div.field_with_errors input, div.field_with_errors select {
 
 div.clear {
   float: clear;
+}
+
+a.forked_from {
+  margin-bottom: 16px;
+  display:block;
+}
+
+.story_headline {
+  margin-bottom: 32px;
+}
+
+.story_headline label {
+  font-size: 36px;
+  color:#878787;
+  display:inline;
+}
+
+.story_headline label strong {
+  color:black;
+  font-weight:normal;
+}
+
+.story_headline input[type="checkbox"] {
+  padding-left:20px;
+}
+
+.story_headline input[type="checkbox"]:disabled {
+  display:none;
 }
