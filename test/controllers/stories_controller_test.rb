@@ -18,4 +18,10 @@ class StoriesControllerTest < ActionController::TestCase
     assert_response :found
     # TODO assert story_url(assigns(:story))
   end
+
+  test 'shows a story' do
+    get 'show', id: stories(:collector_collection).to_param
+    assert_response :ok
+    assert_template 'show'
+  end
 end
