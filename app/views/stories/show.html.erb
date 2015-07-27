@@ -1,3 +1,6 @@
 <div class='gray container'>
-  <p><%= @story.to_sentence %></p>
+  <%= form_for @story do |f| %>
+    <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented? %>
+    <%= f.label :implemented, @story.to_sentence %>
+  <% end %>
 </div>
