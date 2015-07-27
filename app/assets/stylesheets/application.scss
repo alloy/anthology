@@ -4,10 +4,6 @@ section#main {
   @include outer-container;
   padding: $spacing-unit;
 }
-body {
-  font-family: 'futura-medium';
-}
-
 
 .container {
   width: 960px;
@@ -78,6 +74,7 @@ a.forked_from {
   font-size: 36px;
   color:#878787;
   display:inline;
+  margin-bottom: 16px;
 }
 
 .story_headline label strong {
@@ -91,4 +88,41 @@ a.forked_from {
 
 .story_headline input[type="checkbox"]:disabled {
   display:none;
+}
+
+.comment_box {
+  margin-top: 64px;
+}
+
+.related_stories {
+  h3 {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  li {
+    margin-left:20px;
+    list-style:circle;
+  }
+  ul {
+    padding-bottom: 20px;
+  }
+}
+
+.activities {
+  margin-top: 64px;
+  
+  .comment {
+    border: 2px solid #f5f5f5;
+    
+    .header {
+      background-color: #f5f5f5;
+      padding:8px;
+    }
+    .body {
+      padding: 12px;
+    }
+  }
+  .action {
+    margin: 20px;
+  }
 }

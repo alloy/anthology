@@ -11,21 +11,37 @@
     <% end %>
     <p>Opened by <%= @story.writer.name %></p>
   </div>
+  
+  <% if @related_stories.length %>
+    <div class = "related_stories">
+    <% @related_stories.each do |cadre, stories| %>
+    <h3><%= cadre.name %></h3>
+    <ul>
+      <% stories.each do |story| %>
+      <li><%= link_to to_html_sentence(story), story_path(story) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    </div>
+  <% end %>
 
-
+  <div class = "activities">
   <% @list_items.each do |list_item| %>
     <% case list_item %>
     <% when Comment %>
-      <div class='lightgray'>
-        <p><%= list_item.body %></p>
-        <p>– <%= list_item.writer.name %></p>
+      <div class='comment'>
+        <p class="header"><%= list_item.writer.name %> - <%= time_ago_in_words(list_item.created_at) %> ago</p>
+        <p class ="body"><%= list_item.body %></p>
       </div>
     <% when Story %>
-      <%= link_to "↳ Forked to #{list_item.cadre.name}", story_path(list_item) %>
+      <p class = "action">
+        <%= link_to "↳ This was forked to #{list_item.cadre.name}", story_path(list_item) %> at <em><%= time_ago_in_words(list_item.created_at) %> ago</em>
+      </p>
     <% end %>
   <% end %>
+  </div>
 
-  <div class='lightgray'>
+  <div class='comment_box'>
     <%= form_for [@story, Comment.new] do |f| %>
       <span class="columns-6">
         <%= f.label :writer_id, class: 'columns-4' %>

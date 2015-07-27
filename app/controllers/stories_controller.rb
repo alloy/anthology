@@ -24,6 +24,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @list_items = (@story.comments + @story.children).sort_by(&:created_at)
+    @related_stories = @story.children.group_by(&:cadre)
   end
 
   private
