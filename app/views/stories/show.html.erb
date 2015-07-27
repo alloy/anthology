@@ -3,13 +3,16 @@
     <%= link_to "↑ Forked from: #{@story.parent.to_sentence}", story_path(@story.parent) %>
   <% end %>
 
+
+
   <div class='gray'>
     <%= form_for @story do |f| %>
       <%= f.check_box :implemented, disabled: !@story.can_be_manually_marked_as_implemented? %>
-      <%= f.label :implemented, @story.to_sentence %>
+      <%= f.label :implemented, to_html_sentence(@story) %>
     <% end %>
     <p>– <%= @story.writer.name %></p>
   </div>
+
 
   <% @list_items.each do |list_item| %>
     <% case list_item %>
