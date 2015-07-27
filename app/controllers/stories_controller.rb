@@ -1,6 +1,11 @@
 class StoriesController < ApplicationController
   def new
-    @story = Story.new
+    if params[:story_id]
+      parent = Story.find(params[:story_id])
+      @story = parent.children.build
+    else
+      @story = Story.new
+    end
   end
 
   def create
@@ -14,11 +19,12 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+    @list_items = (@story.comments + @story.children).sort_by(&:created_at)
   end
 
   private
 
   def story_params
-    params.require(:story).permit(:writer_id, :cadre_id, :role_id, :feature, :objective)
+    params.require(:story).permit(:parent_id, :writer_id, :cadre_id, :role_id, :feature, :objective)
   end
 end
