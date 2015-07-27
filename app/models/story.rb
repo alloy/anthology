@@ -15,16 +15,20 @@ class Story < ActiveRecord::Base
   end
 
   def implemented=(implemented)
-    if children.count > 0
+    unless can_be_manually_marked_as_implemented?
       raise "Forbidden to manually mark as implemented when a story has child stories."
     end
     super
   end
 
   def implemented
-    children.empty? ? super : children.all?(&:implemented)
+    can_be_manually_marked_as_implemented? ? super : children.all?(&:implemented)
   end
   alias_method :implemented?, :implemented
+
+  def can_be_manually_marked_as_implemented?
+    children.count.zero?
+  end
 
   def to_sentence
     SENTENCE_FORMAT % [role.name.downcase, feature, objective]
