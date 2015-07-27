@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  allow_access :authenticated
+
   def index
     @stories = Story.all.group_by(&:cadre)
   end
