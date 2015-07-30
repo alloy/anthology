@@ -1,0 +1,15 @@
+<%= form_for @cadre do |f| %>
+  <span class="columns-12">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </span>
+  <span class="columns-12">
+    <%= f.label :definition %>
+    <%= f.text_field :definition %>
+  </span>
+  <span class="columns-12" style="margin-top:32px;">
+    <%= f.submit class: 'btn btn-primary btn-small' %>
+  </span>
+  <div class="clear">&nbsp;</div>
+<% end %>
+</div>
