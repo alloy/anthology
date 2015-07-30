@@ -1,4 +1,3 @@
-* Rename app to ‘anthology’.
 * Add required associations as DB constraints.
 * Add google authentication
 * Remove ‘writer’ popups
