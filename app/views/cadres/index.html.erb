@@ -1,0 +1,17 @@
+<h2>Cadres</h2>
+<p><%= link_to 'New Cadre', new_cadre_path, class: "btn btn-primary btn-small" %></p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+<% @cadres.each do |cadre| %>
+  <tr>
+    <td><%= cadre.name %></td>
+    <td class='actions'>
+      <%= link_to 'Show', cadre_url(cadre), class: 'btn btn-secondary btn-tiny' %>
+      <%= link_to 'Edit', edit_cadre_url(cadre), class: 'btn btn-secondary btn-tiny' %>
+    </td>
+  </tr>
+<%- end -%>
+</table>

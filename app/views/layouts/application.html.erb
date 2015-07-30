@@ -10,13 +10,19 @@
 <body>
 
 <header class="navigation">
-  <%= render(partial: '/shared/albers/svgs/mark')  %>
+  <%= link_to render(partial: '/shared/albers/svgs/mark'), '/' %>
   <ul>
     <li> <%= link_to 'Anthology', "/" %></li>
   </ul>
+  <ul class="sections">
+    <li> <%= link_to 'Cadres', cadres_url %></li>
+    <li> <%= link_to 'Stories', stories_url %></li>
+  </ul>
 </header>
 
-<%= yield %>
+<div class='container'>
+  <%= yield %>
+</div>
 
 </body>
 </html>
