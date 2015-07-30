@@ -1,0 +1,20 @@
+<h2>Roles</h2>
+<p><%= link_to 'New Role', new_role_path, class: "btn btn-primary btn-small" %></p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Definition</th>
+    <th></th>
+  </tr>
+<% @roles.each do |role| %>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= role.definition %></td>
+    <td class='actions'>
+      <%= link_to 'Show', role_url(role), class: 'btn btn-secondary btn-tiny' %>
+      <%= link_to 'Edit', edit_role_url(role), class: 'btn btn-secondary btn-tiny' %>
+    </td>
+  </tr>
+<%- end -%>
+</table>
+
