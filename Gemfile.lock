@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alloy/omniauth-artsy.git
-  revision: baad498da85bb8506d238b3447537aa2ddbd7fcf
+  revision: 663d6fc8511ed0348a80d7fc880dd0313a84f62f
   branch: use-x-access-token-header
   specs:
     omniauth-artsy (0.1.0)
