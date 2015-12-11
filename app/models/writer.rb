@@ -3,5 +3,6 @@ class Writer < ActiveRecord::Base
 
   private
 
-  validates :cadre_id, :name, presence: true
+  validates :cadre_id, :name, presence: true, on: :update
+  validates :email, format: /@artsymail.com\z/
 end

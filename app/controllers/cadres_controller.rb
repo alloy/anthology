@@ -1,4 +1,5 @@
 class CadresController < ApplicationController
+  allow_access :authenticated
   before_filter :find_cadre, only: [:show, :edit, :update]
 
   def index

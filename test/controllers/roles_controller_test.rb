@@ -1,6 +1,10 @@
 require_relative '../test_helper'
 
 class RolesControllerTest < ActionController::TestCase
+  def setup
+    sign_in(writers(:eloy))
+  end
+
   test 'shows a list of roles' do
     get :index
     assert_response :ok

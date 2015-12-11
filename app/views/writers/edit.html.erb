@@ -1,0 +1,16 @@
+<div class='container'>
+  <%= form_for @writer do |f| %>
+    <span class="columns-6">
+      <%= f.label :cadre_id, class: 'columns-4' %>
+      <%= f.select :cadre_id, Cadre.all.sort_by(&:name).map { |cadre| [cadre.name, cadre.id] }, {}, { class: 'columns-16' } %>
+    </span>
+    <span class="columns-7">
+      <%= f.label :name, class: 'columns-4' %>
+      <%= f.text_field :name, class: 'columns-16' %>
+    </span>
+    <span class="columns-12" style="margin-top:32px;">
+      <%= f.submit 'Update', class: 'btn btn-primary btn-small' %>
+    </span>
+    <div class="clear">&nbsp;</div>
+  <% end %>
+</div>

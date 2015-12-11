@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  allow_access :authenticated
+
   def index
     @stories = Story.all.group_by(&:cadre)
   end
@@ -10,10 +12,11 @@ class StoriesController < ApplicationController
     else
       @story = Story.new
     end
+    @story.cadre = @authenticated.cadre
   end
 
   def create
-    @story = Story.new(story_params)
+    @story = Story.new(story_params.merge(writer: @authenticated))
     if @story.save
       redirect_to story_url(@story)
     else
@@ -36,6 +39,6 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:parent_id, :writer_id, :cadre_id, :role_id, :feature, :objective)
+    params.require(:story).permit(:parent_id, :cadre_id, :role_id, :feature, :objective)
   end
 end
