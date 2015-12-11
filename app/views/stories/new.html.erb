@@ -1,4 +1,3 @@
-
 <div class='container'>
   <%= form_for @story do |f| %>
     <% if @story.parent %>
@@ -20,7 +19,7 @@
     <span class="columns-16" style="margin-top:32px;">
     </span>
     
-    <span class="columns-7" style="margin-right:10px;"> 
+    <span class="columns-7" style="margin-right:10px;">
       <%= f.label :feature, 'I want', class: 'columns-4' %>
       <%= f.text_field :feature, placeholder: 'to be able to do something', class: 'columns-16' %>
     </span>

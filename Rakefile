@@ -4,3 +4,10 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+namespace :db do
+  task :seed do
+    ENV['FIXTURES'] = 'cadres'
+    Rake::Task['db:fixtures:load'].invoke
+  end
+end

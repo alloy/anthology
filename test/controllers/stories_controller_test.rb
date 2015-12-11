@@ -2,6 +2,7 @@ require_relative '../test_helper'
 
 class StoriesControllerTest < ActionController::TestCase
   def setup
+    sign_in(writers(:eloy))
     @story = stories(:collector_collection)
   end
 

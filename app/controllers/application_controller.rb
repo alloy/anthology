@@ -3,7 +3,7 @@ require 'authentication_needed_san'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :find_authenticated, :block_access
+  before_filter :find_authenticated, :ensure_valid_writer, :block_access
 
   protected
 
@@ -11,13 +11,19 @@ class ApplicationController < ActionController::Base
   extend  Authorization::AllowAccess
 
   def find_authenticated
-    #@authenticated ||= Member.find_by_id(request.session[:member_id]) unless request.session[:member_id].blank?
+    @authenticated = Writer.find_by_id(request.session[:writer_id]) unless request.session[:writer_id].blank?
+  end
+
+  def ensure_valid_writer
+    # When the user authenticates through oauth2, we don’t have any cadre info yet, so keep redirecting the user to the
+    # edit form until they have provided all the required Writer information.
+    redirect_to edit_writer_url(@authenticated) if @authenticated && !@authenticated.valid?
   end
 
   def access_forbidden
     # The user is authenticated, just not authorized
-    if !@authenticated.nil?
-      render status: :forbidden
+    if @authenticated
+      head :forbidden
     else
       flash.keep
       authentication_needed!

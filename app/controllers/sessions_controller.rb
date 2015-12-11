@@ -1,13 +1,20 @@
 class SessionsController < ApplicationController
-  def create
-    @writer = Writer.find_or_create_by_email(auth_hash[:info][:email])
+  allow_access :all, only: :create
 
-    redirect_to '/'
+  def create
+    if @writer = Writer.find_by_email(user_info[:email])
+      sign_in(@writer)
+      redirect_to root_url
+    else
+      @writer = Writer.create!(user_info.slice(:email, :name))
+      sign_in(@writer)
+      redirect_to edit_writer_url(@writer)
+    end
   end
 
   protected
 
-  def auth_hash
-    request.env['omniauth.auth']
+  def user_info
+    request.env['omniauth.auth'][:info][:raw_info].to_hash.symbolize_keys
   end
 end

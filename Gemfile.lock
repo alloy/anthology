@@ -8,9 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/dylanfareed/albers
-  revision: d2c07fd4105378afc1c60cfdcf0a591ebdfcdf39
+  revision: bdf9b72070c72024140d43b845c7dbd91e12d505
+  ref: bdf9b72070c72024140d43b845c7dbd91e12d505
   specs:
-    albers (0.1.2)
+    albers (0.1.0)
       bourbon
       neat
 
@@ -129,7 +130,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    sass (3.4.19)
+    sass (3.4.20)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)

@@ -1,11 +1,14 @@
 eloy:
   name: Eloy Durán
   cadre: mobile_engineering
+  email: eloy@artsymail.com
 
 katarina:
   name: Katarina Batina
   cadre: design
+  email: secret1@artsymail.com
 
 rebecca:
   name: Rebecca Bronfein Raphael
   cadre: collector_relations
+  email: secret2@artsymail.com

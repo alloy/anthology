@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :children, controller: :stories
   end
 
+  resources :writers
+
   get '/auth/artsy', as: :new_session
   get '/auth/artsy/callback', to: 'sessions#create'
 
