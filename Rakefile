@@ -7,7 +7,7 @@ Rails.application.load_tasks
 
 namespace :db do
   task :seed do
-    ENV['FIXTURES'] = 'cadres'
+    ENV['FIXTURES'] = 'cadres,roles'
     Rake::Task['db:fixtures:load'].invoke
   end
 end

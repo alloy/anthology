@@ -4,21 +4,17 @@
       <%= f.hidden_field :parent_id, value: @story.parent.id %>
     <% end %>
     <span class="columns-6">
-      <%= f.label :writer_id, class: 'columns-4' %>
-      <%= f.select :writer_id, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
-    </span>
-    <span class="columns-6">
       <%= f.label :cadre_id, class: 'columns-4' %>
       <%= f.select :cadre_id, Cadre.all.sort_by(&:name).map { |cadre| [cadre.name, cadre.id] }, {}, { class: 'columns-16' } %>
     </span>
+
+    <span class="columns-19" style="margin-top:32px;">
+    </span>
+ 
     <span class="columns-3">
       <%= f.label :role_id, 'As a', class: 'columns-6' %>
       <%= f.select :role_id, Role.all.map { |role| [role.name.downcase, role.id] }, {}, { class: 'columns-14' } %>
     </span>
-    
-    <span class="columns-16" style="margin-top:32px;">
-    </span>
-    
     <span class="columns-7" style="margin-right:10px;">
       <%= f.label :feature, 'I want', class: 'columns-4' %>
       <%= f.text_field :feature, placeholder: 'to be able to do something', class: 'columns-16' %>
@@ -27,6 +23,7 @@
       <%= f.label :objective, 'so that', class: 'columns-4' %>
       <%= f.text_field :objective, placeholder: 'I can achieve such and such', class: 'columns-16' %>
     </span>
+
     <span class="columns-12" style="margin-top:32px;">
       <%= f.submit 'Create', class: 'btn btn-primary btn-small' %>
     </span>

@@ -43,10 +43,6 @@
 
   <div class='comment_box'>
     <%= form_for [@story, Comment.new] do |f| %>
-      <span class="columns-6">
-        <%= f.label :writer_id, class: 'columns-4' %>
-        <%= f.select :writer_id, Writer.all.sort_by(&:name).map { |writer| [writer.name, writer.id] }, {}, { class: 'columns-16' } %>
-      </span>
       <%= f.text_area :body, class: 'columns-20' %>
       <%= f.submit 'Comment' %>
     <% end %>

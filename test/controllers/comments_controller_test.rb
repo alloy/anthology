@@ -8,7 +8,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   test 'creates a comment for a story' do
     assert_difference '@story.comments.count', +1 do
-      post 'create', story_id: @story.to_param, comment: { writer_id: writers(:eloy).to_param, body: 'No comments at this time.' }
+      post 'create', story_id: @story.to_param, comment: { body: 'No comments at this time.' }
     end
     assert_redirected_to story_url(@story)
     comment = @story.comments.reload.last
