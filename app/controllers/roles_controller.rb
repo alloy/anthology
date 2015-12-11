@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+  allow_access :authenticated
   before_filter :find_role, only: [:show, :edit, :update]
 
   def index
@@ -12,7 +13,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(role_params)
     if @role.save
-      redirect_to role_url(@role)
+      redirect_to roles_url
     else
       render :new
     end

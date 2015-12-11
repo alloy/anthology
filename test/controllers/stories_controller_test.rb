@@ -51,7 +51,7 @@ class StoriesControllerTest < ActionController::TestCase
     assert_difference '@story.children.count', +1 do
       post 'create', story: valid_story_params.merge(parent_id: @story.to_param)
     end
-    assert_redirected_to story_url(@story)
+    assert_redirected_to story_url(assigns(:story))
   end
 
   private

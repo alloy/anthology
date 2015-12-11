@@ -2,6 +2,7 @@ require_relative '../test_helper'
 
 class CadresControllerTest < ActionController::TestCase
   def setup
+    sign_in(writers(:eloy))
     @cadre = cadres(:mobile_engineering)
   end
 
